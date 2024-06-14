@@ -7,23 +7,10 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Pagination } from "@mui/material";
 import { Book } from "../hooks/books/booktype";
-
-import { useQuery, gql } from "@apollo/client";
-
-const GET_BOOKS = gql`
-  query GetBooks {
-    books {
-      author
-      coverPhotoURL
-      readingLevel
-      title
-    }
-  }
-`;
+import { useBookQuery } from "../hooks/books/bookQuery";
 
 function BooksPage() {
-  const { loading, error, data } = useQuery(GET_BOOKS);
-
+  const { loading, error, data } = useBookQuery();
   const [page, setPage] = useState<number>(1);
   const [_books, setBooks] = useState<Book[]>([]);
   const [selectedBooks, setSelectedBooks] = useState<Book[]>([]);
